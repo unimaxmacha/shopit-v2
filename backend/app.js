@@ -8,6 +8,8 @@ dotenv.config({ path: "backend/config/config.env"});
 // Connecting to Database
 connectDatabase();
 
+app.use(express.json());
+
 // Import all routes
 import proudctRoutes from "./routes/products.js";
 
