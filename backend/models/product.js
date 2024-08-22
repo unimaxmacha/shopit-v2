@@ -38,11 +38,11 @@ const productSchema = new mongoose.Schema(
             enum: {
                 values: [
                     "Electronics",
-                    "Camera,",
+                    "Camera",
                     "Laptops",
                     "Accessories",
                     "Headphones",
-                    "Food,",
+                    "Food",
                     "Books",
                     "Sports",
                     "Outdoor",
