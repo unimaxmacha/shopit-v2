@@ -20,8 +20,10 @@ app.use(express.json());
 
 // Import all routes
 import proudctRoutes from "./routes/products.js";
+import authRoutes from "./routes/auth.js";
 
 app.use("/api/v1", proudctRoutes);
+app.use("/api/v1", authRoutes);
 
 // Using error middleware
 app.use(errorMiddleware);
