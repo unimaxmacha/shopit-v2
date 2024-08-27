@@ -3,6 +3,7 @@ const router = express.Router();
 
 import { 
     allOrders,
+    deleteOrder,
     getOrderDetails, 
     myOrders, 
     newOrder,
@@ -20,6 +21,7 @@ router
 
     router
     .route("/admin/orders/:id")
-    .put(isAuthenticatedUser, authorizeRoles("admin"), updateOrder);
+    .put(isAuthenticatedUser, authorizeRoles("admin"), updateOrder)
+    .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteOrder);
 
 export default router;
