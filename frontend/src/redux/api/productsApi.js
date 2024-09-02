@@ -8,6 +8,7 @@ export const productApi = createApi({
             query: (params) => ({
                 url: "/products",
                 params: {
+                    keyword: params?.keyword,
                     page: params?.page,
                 },
             }),
