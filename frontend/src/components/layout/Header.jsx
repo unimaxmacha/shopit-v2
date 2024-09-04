@@ -53,7 +53,7 @@ const Header = () => {
                                         ? user?.avatar?.url
                                         : "/images/default_avatar.jpg"
                                     }
-                                    alt="User Avatar"
+                                    alt={user?.name}
                                     className="rounded-circle"
                                 />
                             </figure>
