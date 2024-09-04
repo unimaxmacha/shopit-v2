@@ -71,7 +71,7 @@ const Header = () => {
                                 to="/" 
                                 onClick={logoutHandler}
                             > 
-                                Logout 
+                                Logout{" "}
                             </Link>
                         </div>
                     </div>
