@@ -18,6 +18,7 @@ const Header = () => {
     }, [isSuccess]);
 
     const { user } = useSelector((state) => state.auth);
+    const { cartItems } = useSelector((state) => state.cart);
 
     const logoutHandler = () => {
         logout();
@@ -38,7 +39,9 @@ const Header = () => {
             <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
                 <a href="/cart" style={{ textDecoration: "none" }}>
                     <span id="cart" className="ms-3"> Cart </span>
-                    <span className="ms-1" id="cart_count">0</span>
+                    <span className="ms-1" id="cart_count">
+                        {cartItems?.length}
+                    </span>
                 </a>
 
                 { user ? (
