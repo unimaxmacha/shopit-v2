@@ -5,11 +5,13 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
-    const [email, setEmail] = useState();
+    const [email, setEmail] = useState("");
     
     const navigate = useNavigate();
 
-    const[forgotPassword, { isLoading, error, isSuccess }] = useForgotPasswordMutation();
+    const[forgotPassword, { isLoading, error, isSuccess }] = 
+    useForgotPasswordMutation();
+    
     const { isAuthenticated } = useSelector((state) => state.auth);
 
     useEffect(() => {
