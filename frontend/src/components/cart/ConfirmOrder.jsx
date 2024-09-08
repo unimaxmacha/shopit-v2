@@ -1,7 +1,7 @@
 import React from "react";
 import MetaData from "../layout/MetaData";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { calculateOrderCost } from "../helpers/helpers";
 import CheckoutSteps from "./CheckoutSteps";
 
@@ -9,8 +9,6 @@ const ConfirmOrder = () => {
 
     const { cartItems, shippingInfo } = useSelector((state) => state.cart);
     const { user } = useSelector((state) => state.auth);
-
-    const navigate = useNavigate();
 
     const {
         itemsPrice,
