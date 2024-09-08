@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { countries } from "countries-list";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingInfo } from "../../redux/features/cartSlice";
+import { useNavigate } from "react-router-dom";
+import MetaData from "../layout/MetaData";
 
 const Shipping = () => {
     const countriesList = Object.values(countries);
     
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
@@ -30,10 +33,12 @@ const Shipping = () => {
         e.preventDefault();
         
         dispatch(saveShippingInfo({ address, city, zipCode, phoneNo, country }));
+        navigate("/confirm_order");
     };
 
     return (
         <>
+            <MetaData title={"Shipping Info"} />
             <div className="row wrapper mb-5">
                 <div className="col-10 col-lg-5">
                     <form className="shadow rounded bg-body" onSubmit={submitHandler} >
