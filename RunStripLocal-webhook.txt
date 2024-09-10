@@ -1,0 +1,15 @@
+■ Steps (Using Command Prompt)
+----------------------------------
+C:\Windows\System32>D:
+D:\>stripe login
+----------------------------------
+1. Go to the drive where you stripe.exe exists
+2. Execute "stripe login"
+3. Execute "stripe listen --events checkout.session.completed --forward-to localhost:4000/api/v1/payment/webhook"
+Following output will be there.
+Copy the Webhook screte key and add in config file in backend.
+
+D:\>stripe listen --events checkout.session.completed --forward-to localhost:3000/api/payment/webhook
+> Ready! You are using Stripe API Version [2023-10-16]. Your webhook signing secret is whsec_1938b0a7f2fa19077e519d1a1d38b087c0fdd3cd702a7412e186db5f088a2660 (^C to quit)
+2024-03-26 22:11:52   --> checkout.session.completed [evt_1OyZnABRCeRH4GEBynfpQOe8]
+2024-03-26 22:11:55  <--  [200] POST http://localhost:3000/api/payment/webhook [evt_1OyZnABRCeRH4GEBynfpQOe8]
