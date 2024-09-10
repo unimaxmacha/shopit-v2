@@ -1,4 +1,8 @@
 ■ Steps (Using Command Prompt)
+----------------------------------
+C:\Windows\System32>D:
+D:\>stripe login
+----------------------------------
 1. Go to the drive where you stripe.exe exists
 2. Execute "stripe login"
 3. Execute "stripe listen --events checkout.session.completed --forward-to localhost:4000/api/v1/payment/webhook"
