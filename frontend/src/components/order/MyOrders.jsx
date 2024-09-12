@@ -3,18 +3,30 @@ import { useMyOrdersQuery } from "../../redux/api/orderApi";
 import Loader from "../layout/Loader";
 import toast from "react-hot-toast";
 import { MDBDataTable } from "mdbreact";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import MetaData from "../layout/MetaData";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../redux/features/cartSlice";
 
 const MyOrder = () => {
-
     const { data, isLoading, error } = useMyOrdersQuery();
+
+    const [searchParams] = useSearchParams();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const orderSuccess = searchParams.get("order_success");
 
     useEffect(() => {
         if (error) {
             toast.error(error?.data?.message);
         }
-    }, [error]);
+
+        if(orderSuccess) {
+            dispatch(clearCart());
+            navigate("/me/orders");
+        }
+    }, [error, orderSuccess]);
 
     const setOrders = () => {
         const orders = {
