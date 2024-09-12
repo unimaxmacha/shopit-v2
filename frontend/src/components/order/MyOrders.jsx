@@ -4,6 +4,7 @@ import Loader from "../layout/Loader";
 import toast from "react-hot-toast";
 import { MDBDataTable } from "mdbreact";
 import { Link } from "react-router-dom";
+import MetaData from "../layout/MetaData";
 
 const MyOrder = () => {
 
@@ -55,6 +56,7 @@ const MyOrder = () => {
                 orderStatus: order?.orderStatus,
                 actions: (
                     <>
+                    <MetaData title={"My Orders"} />
                         <Link to={`/me/order/${order?._id}`} className="btn btn-primary">
                             <i className="fa fa-eye"></i>
                         </Link>
