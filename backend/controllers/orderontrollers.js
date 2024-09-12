@@ -4,7 +4,7 @@ import Product from "../models/product.js";
 import ErrorHandler from "../utils/errorHandler.js";
 
 // Create new Order => /api/v1/orders/new
-export const newOrder = catchAsyncErrors(async (req, res, next) => {
+export const newOrder = catchAsyncErrors(async (req, res) => {
     const {
         shippingInfo,
         orderItems,
