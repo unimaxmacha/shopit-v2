@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCartItem } from "../../redux/features/cartSlice";
 import MetaData from "../layout/MetaData";
 import NewReviews from "../reviews/NewReview";
+import ListReviews from "../reviews/ListReviews";
 
 const ProductDetails = () => {
     const params = useParams();
@@ -175,6 +176,9 @@ const ProductDetails = () => {
                     )}
                 </div>
             </div>
+            { product?.reviews?.length > 0 && (
+                <ListReviews reviews={product?.reviews} />
+            )}
         </>
     );
 };
