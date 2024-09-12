@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import Loader from "../layout/Loader";
 
-
 const OrderDetails = () => {
     const params = useParams();
     const {data, isLoading, error} = useOrderDetailsQuery(params?.id);
@@ -79,8 +78,10 @@ const OrderDetails = () => {
                             </tr>
                             <tr>
                                 <th scope="row">Address</th>
-                                <td>{shippingInfo?.address}, {shippingInfo?.city},{" "} 
-                                {shippingInfo?.zipCode}, {shippingInfo?.country}</td>
+                                <td>
+                                    {shippingInfo?.address}, {shippingInfo?.city},{" "} 
+                                    {shippingInfo?.zipCode}, {shippingInfo?.country}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
