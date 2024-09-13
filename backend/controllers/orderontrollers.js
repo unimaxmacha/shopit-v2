@@ -28,6 +28,9 @@ export const newOrder = catchAsyncErrors(async (req, res, next) => {
     user: req.user._id,
   });
 
+  console.log("My lord", order.orderItems);
+  
+
   res.status(200).json({
     order,
   });

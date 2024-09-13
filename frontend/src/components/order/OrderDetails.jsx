@@ -10,10 +10,6 @@ const OrderDetails = () => {
     const {data, isLoading, error} = useOrderDetailsQuery(params?.id);
     const order = data?.order || {};
 
-    console.log("======================");
-console.log("My Console: ", data);
-console.log("======================");
-
     const { 
         shippingInfo, 
         orderItems, 
@@ -22,7 +18,7 @@ console.log("======================");
         totalAmount, 
         orderStatus 
     } = order;
-
+    
     const isPaid = paymentInfo?.status === "Paid" ? true : false;
 
     useEffect(() => {
