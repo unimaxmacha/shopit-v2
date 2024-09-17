@@ -14,7 +14,6 @@ const ListProducts = () => {
         if (error) {
             toast.error(error?.data?.message);
         }
-
     }, [error]);
 
     const setProducts = () => {
