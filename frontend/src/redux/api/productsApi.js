@@ -5,6 +5,7 @@ export const productApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "/api/v1" }),
     tagTypes: ["Product"],
     endpoints: (builder) => ({
+
         getProducts: builder.query({
             query: (params) => ({
                 url: "/products",
@@ -18,10 +19,12 @@ export const productApi = createApi({
                 },
             }),
         }),
+
         getProductDetails: builder.query({
             query: (id) => `/products/${id}`,
             providesTags: ["Product"],
         }),
+
         submitReview: builder.mutation({
             query(body) {
                 return {
@@ -32,10 +35,15 @@ export const productApi = createApi({
             },
             invalidatesTags: ["Product"],
         }),
+
         canUserReview: builder.query({
             query: (productId) => `/can_review/?productId=${productId}`,
-            providesTags: ["Product"],
         }),
+
+        getAdminProducts: builder.query({
+            query: () => `/admin/products`,
+        }),
+
     }),
 });
 
@@ -44,4 +52,5 @@ export const {
     useGetProductDetailsQuery, 
     useSubmitReviewMutation,
     useCanUserReviewQuery,
+    useGetAdminProductsQuery,
 } = productApi;

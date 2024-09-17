@@ -68,7 +68,6 @@ const MyOrder = () => {
                 orderStatus: order?.orderStatus,
                 actions: (
                     <>
-                    <MetaData title={"My Orders"} />
                         <Link to={`/me/order/${order?._id}`} className="btn btn-primary">
                             <i className="fa fa-eye"></i>
                         </Link>
@@ -87,6 +86,7 @@ const MyOrder = () => {
 
     return (
         <div>
+            <MetaData title={"My Orders"} />
             <h1 className="my-5">{data?.orders?.length} Orders</h1>
 
             <MDBDataTable 

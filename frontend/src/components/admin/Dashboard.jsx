@@ -8,6 +8,7 @@ import SalesChart from "../charts/SalesChart";
 import { useLazyGetDashboardSalesQuery } from "../../redux/api/orderApi";
 import toast from "react-hot-toast";
 import Loader from "../layout/Loader";
+import MetaData from "../layout/MetaData";
 
 const Dashboard = () => {
     const [startDate, setStartDate] = useState(new Date().setDate(1));
@@ -40,6 +41,7 @@ const Dashboard = () => {
 
     return (
         <AdminLayout>
+            <MetaData title={"Admin Dashboard"} />
             <div className="d-flex justify-content-start align-items-center">
                 <div className="mb-3 me-4">
                     <label className="form-label d-block">Start Date</label>

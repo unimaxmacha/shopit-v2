@@ -49,6 +49,19 @@ export const getProductDetails = catchAsyncErrors(async ( req, res, next ) => {
     });
 });
 
+// Get Products - Admin => /api/v1/admin/products
+export const getAdminProducts = catchAsyncErrors(async ( req, res, next ) => {
+    const products = await Product.find()
+
+    if(!products) {
+        return next (new ErrorHandler("No records to show in the table."));
+    };
+
+    res.status(200).json({
+        products,
+    });
+});
+
 // Update Product details => /api/v1/products/:id
 export const updateProductDetails = catchAsyncErrors(async ( req, res ) => {
     let product = await Product.findById(req?.params?.id);
