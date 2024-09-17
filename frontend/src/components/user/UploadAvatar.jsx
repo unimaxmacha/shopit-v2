@@ -38,10 +38,6 @@ const UploadAvatar = () => {
             avatar,
         };
 
-        console.log("======================");
-        console.log("My Console: ", userData);
-        console.log("======================");
-
         UploadAvatar(userData);
     };
 

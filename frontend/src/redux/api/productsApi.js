@@ -57,7 +57,7 @@ export const productApi = createApi({
         }),
 
         updateProduct: builder.mutation({
-            query({id, body}) {
+            query({ id, body }) {
                 return {
                     url: `/admin/products/${id}`,
                     method: "PUT",
@@ -67,15 +67,39 @@ export const productApi = createApi({
             invalidatesTags: ["AdminProducts", "Product"],
         }),
 
+        uploadProductImages: builder.mutation({
+            query({ id, body }) {
+                return {
+                    url: `/admin/products/${id}/upload_images`,
+                    method: "PUT",
+                    body,
+                };
+            },
+            invalidatesTags: ["Product"],
+        }),
+
+        deleteProductImage: builder.mutation({
+            query({ id, body }) {
+                return {
+                    url: `/admin/products/${id}/delete_image`,
+                    method: "PUT",
+                    body,
+                };
+            },
+            invalidatesTags: ["Product"],
+        }),
+
     }),
 });
 
-export const { 
-    useGetProductsQuery, 
-    useGetProductDetailsQuery, 
+export const {
+    useGetProductsQuery,
+    useGetProductDetailsQuery,
     useSubmitReviewMutation,
     useCanUserReviewQuery,
     useGetAdminProductsQuery,
     useCreateProductMutation,
     useUpdateProductMutation,
+    useUploadProductImagesMutation,
+    useDeleteProductImageMutation,
 } = productApi;
