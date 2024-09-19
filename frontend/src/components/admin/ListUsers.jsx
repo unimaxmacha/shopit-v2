@@ -69,7 +69,7 @@ const ListUsers = () => {
                 actions: (
                     <>
                         <Link 
-                            to={`/admin/orders/${user?._id}`} 
+                            to={`/admin/users/${user?._id}`} 
                             className="btn btn-outline-primary"
                         >
                             <i className="fa fa-pencil"></i>
