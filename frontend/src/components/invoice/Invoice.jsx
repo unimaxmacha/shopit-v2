@@ -107,7 +107,7 @@ const Invoice = () => {
                                     <td colspan="4">
                                         <b>SUBTOTAL</b>
                                     </td>
-                                    <td className="total">${order?.itemPrice}</td>
+                                    <td className="total">${order?.itemsPrice}</td>
                                 </tr>
 
                                 <tr>

@@ -8,7 +8,7 @@ import { delete_file, upload_file } from "../utils/cloudinary.js";
 // Create new Product => /api/v1/products
 export const getProducts = catchAsyncErrors(async ( req, res ) => {
 
-    const resPerPage = 4;
+    const resPerPage = 8;
     const apiFilters = new APIFilters(Product, req.query).search().filters();
 
     let products = await apiFilters.query;
@@ -189,7 +189,7 @@ export const createProductReview = catchAsyncErrors(async ( req, res, next ) => 
 
 // Get product reviews => /api/v1/reviews
 export const getProductReviews = catchAsyncErrors(async (req, res, next) => {
-    const product = await Product.findById(req.query.id);
+    const product = await Product.findById(req.query.id).populate("reviews.user");
 
     if(!product) {
         return next (new ErrorHandler("Product not found.", 404));

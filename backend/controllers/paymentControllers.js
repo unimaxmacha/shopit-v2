@@ -116,7 +116,7 @@ export const stripeWebhook = catchAsyncErrors(async (
 
                 const paymentInfo = {
                     id: session.payment_intent,
-                    id: session.payment_status,
+                    status: session.payment_status,
                 };
 
                 const orderData = {
