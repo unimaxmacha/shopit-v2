@@ -4,30 +4,37 @@ import { MDBDataTable } from "mdbreact";
 import Loader from "../layout/Loader";
 import toast from "react-hot-toast";
 import MetaData from "../layout/MetaData";
-import { useLazyGetProductReviewsQuery } from "../../redux/api/productsApi";
+import { useDeleteReviewMutation, useLazyGetProductReviewsQuery } from "../../redux/api/productsApi";
 
 const ProductReviews = () => {
     const [productId, setProductId] = useState("");
 
-    const [getProductReviews, { data, isLoading, error }] = useLazyGetProductReviewsQuery();
+    const [getProductReviews, { data, isLoading, error }] = 
+        useLazyGetProductReviewsQuery();
+
+    const [deleteReview, {error: deleteError, isLoading: isDeleteLoading, isSuccess} ] = useDeleteReviewMutation();
 
     useEffect(() => {
         if (error) {
             toast.error(error?.data?.message);
         }
 
-        // if (deleteError) {
-        //     toast.error(deleteError?.data?.message);
-        // }
+        if (deleteError) {
+            toast.error(deleteError?.data?.message);
+        }
 
-        // if (isSuccess) {
-        //     toast.success("User Deleted.");
-        // }
-    }, [error]);
+        if (isSuccess) {
+            toast.success("Review Deleted.");
+        }
+    }, [error, deleteError, isSuccess]);
 
     const submitHandler = (e) => {
         e.preventDefault();
         getProductReviews(productId);
+    };
+
+    const deleteReviewHandler = (id) => {
+        deleteReview({ productId, id });
     };
 
     const setReviews = () => {
@@ -72,8 +79,8 @@ const ProductReviews = () => {
                     <>                        
                         <button 
                             className="btn btn-outline-danger ms-2" 
-                            // onClick={() => deleteUserHandler(user?._id)}
-                            // disabled={isDeleteLoading}
+                            onClick={() => deleteReviewHandler(review?._id)}
+                            disabled={isDeleteLoading}
                         >
                             <i className="fa fa-trash"></i>
                         </button>
