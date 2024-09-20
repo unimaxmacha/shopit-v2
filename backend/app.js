@@ -5,6 +5,12 @@ import cookieParser from "cookie-parser";
 import { connectDatabase } from "./config/dbConnect.js";
 import errorMiddleware from "./middlewares/errors.js";
 
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Handle Uncaught exceptions
 process.on("uncaughtException", (err) => {
     console.log(`Error: ${err}`);
@@ -37,6 +43,14 @@ app.use("/api/v1", proudctRoutes);
 app.use("/api/v1", authRoutes);
 app.use("/api/v1", orderRoutes);
 app.use("/api/v1", paymentRoutes);
+
+if (process.env.NODE_ENV === "PRODUCTION") {
+    app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+    });
+}
 
 // Using error middleware
 app.use(errorMiddleware);
