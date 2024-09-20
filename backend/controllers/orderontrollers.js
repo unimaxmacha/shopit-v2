@@ -28,9 +28,6 @@ export const newOrder = catchAsyncErrors(async (req, res, next) => {
     user: req.user._id,
   });
 
-  console.log("My lord", order.orderItems);
-
-
   res.status(200).json({
     order,
   });
@@ -82,15 +79,22 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("You have already delivered this order", 400));
   }
 
+  let productNotFound = false;
+
   // Update products stock
-  order?.orderItems?.forEach(async (item) => {
+  for (const item of order.orderItems) {
     const product = await Product.findById(item?.product?.toString());
     if (!product) {
-      return next(new ErrorHandler("No Product found with this ID", 404));
+      productNotFound = true;
+      break;
     }
     product.stock = product.stock - item.quantity;
     await product.save({ validateBeforeSave: false });
-  });
+  };
+
+  if (productNotFound) {
+    return next(new ErrorHandler("No Product found with one or more ID.", 404));
+  }
 
   order.orderStatus = req.body.status;
   order.deliveredAt = Date.now();
@@ -162,7 +166,7 @@ async function getSalesData(startDate, endDate) {
   const finalSalesData = datesBetween.map((date) => ({
     date,
     sales: (salesMap.get(date) || { sales: 0 }).sales,
-    numOrders: (salesMap.get(date) || { numOrders: 0}).numOrders,
+    numOrders: (salesMap.get(date) || { numOrders: 0 }).numOrders,
   }));
 
   return { salesData: finalSalesData, totalSales, totalNumOrders };
@@ -175,7 +179,7 @@ function getDatesBetween(startDate, endDate) {
   while (currentDate <= new Date(endDate)) {
     const formattedDate = currentDate.toISOString().split("T")[0];
     dates.push(formattedDate);
-    currentDate.setDate(currentDate.getDate() + 1); 
+    currentDate.setDate(currentDate.getDate() + 1);
   };
 
   return dates;
@@ -191,13 +195,13 @@ export const getSales = catchAsyncErrors(async (req, res, next) => {
   endDate.setUTCHours(23, 59, 59, 999);
 
   const { salesData, totalSales, totalNumOrders } = await getSalesData(
-    startDate, 
+    startDate,
     endDate
   );
 
   res.status(200).json({
-    totalSales, 
+    totalSales,
     totalNumOrders,
-    sales: salesData, 
+    sales: salesData,
   });
 });
