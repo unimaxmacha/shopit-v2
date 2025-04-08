@@ -448,7 +448,7 @@ export const getResetPasswordTemplate = (username, resetUrl) => `
                 <tr>
                 <td class="email-masthead">
                     <a
-                    href="https://shopit.com"
+                    href="https://desiwasa.com"
                     class="f-fallback email-masthead_name"
                     >
                     ShopIT

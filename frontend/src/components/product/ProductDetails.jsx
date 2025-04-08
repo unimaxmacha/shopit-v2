@@ -173,9 +173,16 @@ const ProductDetails = () => {
 
           <h4 className="mt-2">Description:</h4>
           <p>{product?.description}</p>
+          <p id="product_manufactureDate mb-3">
+            Manufactured Date: {product?.manufactureDate}
+          </p>
+          <p id="product_expireDate mb-3">Expire Date: {product?.expireDate}</p>
           <hr />
           <p id="product_seller mb-3">
             Sold by: <strong>{product?.seller}</strong>
+          </p>
+          <p id="product_seller mb-3">
+            Seller Address: <strong>{product?.sellerAddress}</strong>
           </p>
 
           {isAuthenticated ? (

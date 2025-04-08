@@ -48,11 +48,11 @@ const Invoice = () => {
         <div id="order_invoice" className="p-3 border border-secondary">
           <header className="clearfix">
             <div id="logo">
-              <img src="/images/invoice-logo.png" alt="Company Logo" />
+              <img src="/images/Desiwasalogo.png" alt="Company Logo" />
             </div>
             <h1>INVOICE # {order?._id}</h1>
             <div id="company" className="clearfix">
-              <div>ShopIT</div>
+              <div>DesiWasa</div>
               <div>
                 455 Libali-2 Heights,
                 <br />
@@ -60,7 +60,7 @@ const Invoice = () => {
               </div>
               <div>(983) 519-0450</div>
               <div>
-                <a href="mailto:info@shopit.com">info@shopit.com</a>
+                <a href="mailto:info@desiwasa.com">info@desiwasa.com</a>
               </div>
             </div>
             <div id="project">
