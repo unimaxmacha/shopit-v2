@@ -132,7 +132,21 @@ const ProductDetails = () => {
           </div>
           <hr />
 
-          <p id="product_price">Rs.{product?.price}</p>
+          {/* <p id="product_price">Rs.{product?.price}</p> */}
+          <p className="discounted-price">
+            Rs.
+            {product?.discount
+              ? (product?.price * (100 - product.discount)) / 100
+              : product?.price}
+          </p>
+          <div className="product-item-price">
+            {product?.discount ? (
+              <p className="actual-price">Rs.{product?.price}</p>
+            ) : (
+              ""
+            )}
+            <p>{product?.discount ? ` -${product.discount}%` : ""}</p>
+          </div>
           <div className="stockCounter d-inline">
             <span className="btn btn-danger minus" onClick={decreaseQty}>
               -
