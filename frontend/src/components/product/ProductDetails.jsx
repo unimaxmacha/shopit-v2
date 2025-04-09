@@ -26,9 +26,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     setActiveImg(
-      product?.images[0]
-        ? product?.images[0]?.url
-        : "/images/default_product.png"
+      product?.images[0] ? product?.images[0]?.url : "/images/defaultImage.jpeg"
     );
   }, [product]);
 
