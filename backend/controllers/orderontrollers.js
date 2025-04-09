@@ -81,17 +81,6 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
 
   let productNotFound = false;
 
-  // Update products stock
-  for (const item of order.orderItems) {
-    const product = await Product.findById(item?.product?.toString());
-    if (!product) {
-      productNotFound = true;
-      break;
-    }
-    product.stock = product.stock - item.quantity;
-    await product.save({ validateBeforeSave: false });
-  };
-
   if (productNotFound) {
     return next(new ErrorHandler("No Product found with one or more ID.", 404));
   }
@@ -100,6 +89,19 @@ export const updateOrder = catchAsyncErrors(async (req, res, next) => {
   order.deliveredAt = Date.now();
 
   await order.save();
+
+  // Update products stock
+  for (const item of order.orderItems) {
+    const product = await Product.findById(item?.product?.toString());
+    if (!product) {
+      productNotFound = true;
+      break;
+    }
+    if (order?.orderStatus === "Delivered") {
+      product.stock = product.stock - item.quantity;
+    }
+    await product.save({ validateBeforeSave: false });
+  };
 
   res.status(200).json({
     success: true,
