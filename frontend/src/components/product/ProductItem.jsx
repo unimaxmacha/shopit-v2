@@ -14,7 +14,7 @@ const ProductItem = ({ product, columnSize }) => {
             src={
               product?.images[0]
                 ? product?.images[0]?.url
-                : "/images/default_product.png"
+                : "/images/defaultImage.jpeg"
             }
             alt={product?.name}
           />

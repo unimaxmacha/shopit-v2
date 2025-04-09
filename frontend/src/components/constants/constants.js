@@ -4,6 +4,7 @@ export const PRODUCT_CATEGORIES = [
   // "Laptops",
   // "Accessories",
   "Ayurbedic Medicine",
+  "Normal Medicine",
   // "Headphones",
   // "Food",
   // "Books",
