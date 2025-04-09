@@ -20,6 +20,7 @@ const NewProduct = () => {
     sellerAddress: "",
     manufactureDate: "",
     expireDate: "",
+    discount: "",
   });
 
   const [createProduct, { isLoading, error, isSuccess }] =
@@ -46,6 +47,7 @@ const NewProduct = () => {
     sellerAddress,
     manufactureDate,
     expireDate,
+    discount,
   } = product;
 
   const onChange = (e) => {
@@ -126,6 +128,25 @@ const NewProduct = () => {
                   onChange={onChange}
                 />
               </div>
+            </div>
+
+            <div className="row">
+              <div className="mb-3 col">
+                <label htmlFor="discount_field" className="form-label">
+                  {" "}
+                  Discount{" "}
+                </label>
+                <input
+                  type="text"
+                  id="discount_field"
+                  className="form-control"
+                  name="discount"
+                  placeholder="Enter discount in %"
+                  value={discount}
+                  onChange={onChange}
+                />
+              </div>
+              <div className="mb-3 col"></div>
             </div>
 
             <div className="row">

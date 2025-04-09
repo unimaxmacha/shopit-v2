@@ -12,9 +12,14 @@ const productSchema = new mongoose.Schema(
       required: [true, "Please enter product price."],
       maxLength: [10, "Product price cannot exceed 10 digits."],
     },
+    discount: {
+      type: Number,
+      required: [false, "Please enter discount in %.."],
+      maxLength: [2, "Discount cannot exceed 2 digits."],
+    },
     description: {
       type: String,
-      required: [true, "Please enter product name."],
+      required: [false, "Please enter product name."],
     },
     ratings: {
       type: Number,
@@ -37,16 +42,16 @@ const productSchema = new mongoose.Schema(
       required: [true, "Please enter product category."],
       enum: {
         values: [
-          "Electronics",
-          "Camera",
-          "Laptops",
-          "Accessories",
+          // "Electronics",
+          // "Camera",
+          // "Laptops",
+          // "Accessories",
           "Ayurbedic Medicine",
-          "Food",
-          "Books",
-          "Sports",
-          "Outdoor",
-          "Home",
+          // "Food",
+          // "Books",
+          // "Sports",
+          // "Outdoor",
+          // "Home",
         ],
         message: "Please select correct category.",
       },
@@ -61,11 +66,11 @@ const productSchema = new mongoose.Schema(
     },
     stock: {
       type: Number,
-      required: [true, "Please enter product stock."],
+      required: [false, "Please enter product stock."],
     },
     manufactureDate: {
       type: String,
-      required: [true, "Please enter manufacture date in YYYY-MM-DD."],
+      required: [false, "Please enter manufacture date in YYYY-MM-DD."],
     },
     expireDate: {
       type: String,
