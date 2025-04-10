@@ -41,14 +41,15 @@ const Home = () => {
     <>
       <MetaData title={"Buy Best Products Online"} />
       <div className="row">
-        {keyword && (
-          <div className="col-6 col-md-3 mt-5">
-            <Filters />
-          </div>
-        )}
+        {/* {keyword && ( */}
+        <div className="col-3 col-md-3 mt-5">
+          <Filters />
+        </div>
+        {/* )} */}
         <div
           className={
-            keyword ? "col-12 col-sm-6 col-md-9" : "col-12 col-sm-6 col-md-12"
+            // keyword ? "col-12 col-sm-6 col-md-9" :
+            "col-9 col-sm-6 col-md-9"
           }
         >
           <h1 id="products_heading" className="text-secondary">

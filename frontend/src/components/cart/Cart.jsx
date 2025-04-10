@@ -9,6 +9,8 @@ const Cart = () => {
   const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.cart);
 
+  console.log("My Cart Items: ", cartItems);
+
   const increaseQty = (item, quantity) => {
     const newQty = quantity + 1;
 
@@ -59,64 +61,86 @@ const Cart = () => {
 
           <div className="row d-flex justify-content-between">
             <div className="col-12 col-lg-8">
-              {cartItems?.map((item) => (
-                <>
-                  <hr />
-                  <div className="cart-item" data-key="product1">
-                    <div className="row">
-                      <div className="col-4 col-lg-3">
-                        <img
-                          src={item?.image}
-                          alt="Laptop"
-                          height="90"
-                          width="115"
-                        />
-                      </div>
-                      <div className="col-5 col-lg-3">
-                        <Link to={`/products/${item?.product}`}>
-                          {" "}
-                          {item?.name}{" "}
-                        </Link>
-                      </div>
-                      <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                        <p id="card_item_price">Rs.{item?.price}</p>
-                      </div>
-                      <div className="col-4 col-lg-3 mt-4 mt-lg-0">
-                        <div className="stockCounter d-inline">
-                          <span
-                            className="btn btn-danger minus"
-                            onClick={() => decreaseQty(item, item.quantity)}
-                          >
-                            -
-                          </span>
-                          <input
-                            type="number"
-                            className="form-control count d-inline"
-                            value={item?.quantity}
-                            readonly
-                          />
-                          <span
-                            className="btn btn-primary plus"
-                            onClick={() => increaseQty(item, item.quantity)}
-                          >
-                            +
-                          </span>
-                        </div>
-                        <p>Subtotal: Rs.{item?.quantity * item?.price}</p>
-                      </div>
+              {cartItems?.map((item) => {
+                console.log("My item: ", item);
 
-                      <div className="col-4 col-lg-1 mt-4 mt-lg-0">
-                        <i
-                          id="delete_cart_item"
-                          className="fa fa-trash btn btn-danger"
-                          onClick={() => removeCartItemHandler(item?.product)}
-                        ></i>
+                return (
+                  <>
+                    <hr />
+                    <div className="cart-item" data-key="product1">
+                      <div className="row">
+                        <div className="col-4 col-lg-3">
+                          <img
+                            src={item?.image}
+                            alt="Laptop"
+                            height="90"
+                            width="115"
+                          />
+                        </div>
+                        <div className="col-5 col-lg-3">
+                          <Link to={`/products/${item?.product}`}>
+                            {" "}
+                            {item?.name}{" "}
+                          </Link>
+                        </div>
+                        {/* <div className="col-4 col-lg-2 mt-4 mt-lg-0">
+                          <p id="card_item_price">
+                            Rs.{item?.price} -{item?.discount}
+                          </p>
+                        </div> */}
+                        <div className="col-4 col-lg-2 mt-4 mt-lg-0">
+                          <p className="discounted-price">
+                            Rs.
+                            {item?.discount
+                              ? (item?.price * (100 - item.discount)) / 100
+                              : item?.price}
+                          </p>
+                          <div className="product-item-price">
+                            {item?.discount ? (
+                              <p className="actual-price">Rs.{item?.price}</p>
+                            ) : (
+                              ""
+                            )}
+                            <p>{item?.discount ? ` -${item.discount}%` : ""}</p>
+                          </div>
+                        </div>
+                        <div className="col-4 col-lg-3 mt-4 mt-lg-0">
+                          <div className="stockCounter d-inline">
+                            <span
+                              className="btn btn-danger minus"
+                              onClick={() => decreaseQty(item, item.quantity)}
+                            >
+                              -
+                            </span>
+                            <input
+                              type="number"
+                              className="form-control count d-inline"
+                              value={item?.quantity}
+                              readonly
+                            />
+                            <span
+                              className="btn btn-primary plus"
+                              onClick={() => increaseQty(item, item.quantity)}
+                            >
+                              +
+                            </span>
+                          </div>
+                          <p>Subtotal: Rs.{item?.quantity * item?.price}</p>
+                        </div>
+
+                        <div className="col-4 col-lg-1 mt-4 mt-lg-0">
+                          <i
+                            id="delete_cart_item"
+                            className="fa fa-trash btn btn-danger"
+                            onClick={() => removeCartItemHandler(item?.product)}
+                          ></i>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <hr />
-                </>
-              ))}
+                    <hr />
+                  </>
+                );
+              })}
             </div>
 
             <div className="col-12 col-lg-3 my-4">
