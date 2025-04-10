@@ -7,7 +7,9 @@ const ProductItem = ({ product, columnSize }) => {
   return (
     <>
       <MetaData title={"Product Item"} />
-      <div className={`col-sm-12 col-md-6 col-lg-${columnSize} my-3`}>
+      <div
+        className={`col-sm-12 col-md-6 col-lg-${columnSize} product-col-gap `}
+      >
         <div className="card p-3 rounded">
           <img
             className="card-img-top mx-auto"
