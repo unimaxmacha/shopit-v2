@@ -9,8 +9,6 @@ const Cart = () => {
   const navigate = useNavigate();
   const { cartItems } = useSelector((state) => state.cart);
 
-  console.log("My Cart Items: ", cartItems);
-
   const increaseQty = (item, quantity) => {
     const newQty = quantity + 1;
 
@@ -34,6 +32,7 @@ const Cart = () => {
       price: item?.price,
       image: item?.image,
       stock: item?.stock,
+      discount: item?.discount,
       quantity: newQty,
     };
 
@@ -62,8 +61,6 @@ const Cart = () => {
           <div className="row d-flex justify-content-between">
             <div className="col-12 col-lg-8">
               {cartItems?.map((item) => {
-                console.log("My item: ", item);
-
                 return (
                   <>
                     <hr />
@@ -83,11 +80,6 @@ const Cart = () => {
                             {item?.name}{" "}
                           </Link>
                         </div>
-                        {/* <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                          <p id="card_item_price">
-                            Rs.{item?.price} -{item?.discount}
-                          </p>
-                        </div> */}
                         <div className="col-4 col-lg-2 mt-4 mt-lg-0">
                           <p className="discounted-price">
                             Rs.
@@ -125,7 +117,14 @@ const Cart = () => {
                               +
                             </span>
                           </div>
-                          <p>Subtotal: Rs.{item?.quantity * item?.price}</p>
+                          {/* <p>Subtotal: Rs.{item?.quantity * item?.price}</p> */}
+                          <p>
+                            Subtotal: Rs.
+                            {item?.quantity *
+                              (item?.discount
+                                ? (item?.price * (100 - item.discount)) / 100
+                                : item?.price)}
+                          </p>
                         </div>
 
                         <div className="col-4 col-lg-1 mt-4 mt-lg-0">
@@ -160,7 +159,12 @@ const Cart = () => {
                     Rs.
                     {cartItems
                       ?.reduce(
-                        (acc, item) => acc + item?.quantity * item?.price,
+                        (acc, item) =>
+                          acc +
+                          item?.quantity *
+                            (item?.discount
+                              ? (item?.price * (100 - item.discount)) / 100
+                              : item?.price),
                         0
                       )
                       .toFixed(2)}
