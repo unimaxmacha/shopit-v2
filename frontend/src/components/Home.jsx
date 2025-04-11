@@ -40,23 +40,16 @@ const Home = () => {
   return (
     <>
       <MetaData title={"Buy Best Products Online"} />
+      <h1 id="products_heading" className="text-secondary">
+        {keyword
+          ? `${data?.products?.length} Products found with keyword: ${keyword}`
+          : "Ayurbedic Medicines"}
+      </h1>
       <div className="row">
-        {/* {keyword && ( */}
         <div className="col-3 col-md-3 mt-5">
           <Filters />
         </div>
-        {/* )} */}
-        <div
-          className={
-            // keyword ? "col-12 col-sm-6 col-md-9" :
-            "col-9 col-sm-6 col-md-9"
-          }
-        >
-          <h1 id="products_heading" className="text-secondary">
-            {keyword
-              ? `${data?.products?.length} Products found with keyword: ${keyword}`
-              : "Ayurbedic Medicines"}
-          </h1>
+        <div className={"col-9 col-sm-6 col-md-9"}>
           <section id="products" className="mt-5">
             <div className="row">
               {data?.products?.map((product) => (
